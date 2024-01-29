@@ -1,4 +1,7 @@
-﻿namespace Auf7
+﻿using System.Diagnostics;
+using System;
+
+namespace Auf7
 {
     public class Employee
     {
@@ -60,12 +63,15 @@
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
 
-            foreach (var grade in this.grades)
+            var index = 0;
+
+            do
             {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
-            }
+                statistics.Max = Math.Max(statistics.Max, this.grades[index]);
+                statistics.Min = Math.Min(statistics.Min, this.grades[index]);
+                statistics.Average += this.grades[index];
+                index++;
+            } while (index < this.grades.Count);
 
             statistics.Average /= this.grades.Count;
 
